@@ -1,0 +1,11 @@
+main.o
+mainwindow.o
+limitsetting.o
+loadsetting.o
+multicurvesplot.o
+qcustomplot.o
+moc_mainwindow.o
+moc_limitsetting.o
+moc_loadsetting.o
+moc_multicurvesplot.o
+moc_qcustomplot.o
