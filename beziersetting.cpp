@@ -27,7 +27,22 @@ BezierSetting::~BezierSetting()
 
 void BezierSetting::on_pushButton_clicked()
 {
+
     getBezierPoint=ui->lineEdit->text().toInt();
+    if(getBezierPoint==0)
+    {
+        getBezierPoint=1;
+        QMessageBox::information(this,tr("警告"),tr("最小值为1"),tr("确定"));
+        ui->lineEdit->setText(QString::number(getBezierPoint));
+        return ;
+    }
+    if(getBezierPoint>25)
+    {
+        getBezierPoint=25;
+        QMessageBox::information(this,tr("警告"),tr("最小值为1"),tr("确定"));
+        ui->lineEdit->setText(QString::number(getBezierPoint));
+        return ;
+    }
     bezierDoNumber=ui->comboBox->currentIndex();
     emit buzierSettingStart();
 }
@@ -42,12 +57,17 @@ void BezierSetting::calculateBeginText()
 {
 
     ui->pushButton->setEnabled(false);
+    ui->lineEdit->setEnabled(false);
+    ui->comboBox->setEnabled(false);
     ui->pushButton->setText("正在计算");
 }
 void BezierSetting::calculateOverText()
 {
     ui->pushButton->setText("开始平滑");
     ui->pushButton->setEnabled(true);
+    ui->lineEdit->setEnabled(true);
+    ui->comboBox->setEnabled(true);
+
 }
 #include <QCloseEvent>
 void BezierSetting::closeEvent (QCloseEvent *event)
